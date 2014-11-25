@@ -20,9 +20,12 @@ public class App{
     		try{
     			linia = inb.readLine();
     			while( (linia != null)){
-    				linia.split(linia);
-    				System.out.println(linia);
-    				linia = inb.readLine();
+        			for(int i = linia.length()-1; i >= 0;i--){
+        				System.out.print(linia.charAt(i));
+        			}
+        			System.out.println(" ");
+       				linia = inb.readLine();
+
     			}
     		}catch(IOException e){
     	          System.out.println(ERRORFICHERO);
