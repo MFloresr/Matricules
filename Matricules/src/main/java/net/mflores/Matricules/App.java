@@ -20,9 +20,11 @@ public class App{
     		try{
     			linia = inb.readLine();
     			while( (linia != null)){
-        			for(int i = linia.length()-1; i >= 0;i--){
-        				System.out.print(linia.charAt(i));
-        			}
+    				if ((linia.length()-1 < 8) || (linia == null) || linia.trim().equals("")  ){
+    					for(int i = linia.length()-1; i >= 0;i--){   //hashnext  hashnextdouble
+    						System.out.print(linia.charAt(i));
+    					}
+    				}
         			System.out.println(" ");
        				linia = inb.readLine();
 
