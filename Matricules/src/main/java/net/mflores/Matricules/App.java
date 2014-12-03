@@ -1,5 +1,7 @@
 package net.mflores.Matricules;
 import java.io.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class App{
 	private static final String FICHERO = "/matricula.txt";
@@ -10,23 +12,27 @@ public class App{
     public static void main( String[] args ){
 
     	BufferedReader inb = null;
-    	InputStream in =App.class.getResourceAsStream(FICHERO);
+    	InputStream entrada =App.class.getResourceAsStream(FICHERO);
 
-    	if (in != null){
-    		Reader r = new InputStreamReader(in);
+    	if (entrada != null){
+    		Reader r = new InputStreamReader(entrada);
     		inb = new BufferedReader(r);
-
-    		String linia;
+    		String linea;
     		try{
-    			linia = inb.readLine();
-    			while( (linia != null)){
-    				if ((linia.length()-1 < 8) || (linia == null) || linia.trim().equals("")  ){
-    					for(int i = linia.length()-1; i >= 0;i--){   //hashnext  hashnextdouble
-    						System.out.print(linia.charAt(i));
+    			linea = inb.readLine();
+    			while( (linea != null)){
+    				if (!linea.trim().equals("")) {
+        				Pattern pat = Pattern.compile("[0-9]{4,4}( )[a-zA-Z]{2,3}");
+    					Matcher mat = pat.matcher(linea);
+    					if (mat.matches()){
+    						for(int i = linea.length()-1; i >= 0;i--){   //hashnext  hashnextdouble
+    							System.out.print(linea.charAt(i));
+    						}
+    						System.out.println(" ");
     					}
     				}
-        			System.out.println(" ");
-       				linia = inb.readLine();
+
+       				linea = inb.readLine();
 
     			}
     		}catch(IOException e){
